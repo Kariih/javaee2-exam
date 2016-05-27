@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:body>
+
+	<ui:composition>
+		<ui:insert name="login">
+		<ui:include src="loginButton.xhtml" />
+	</ui:insert>
+	<h1>Login</h1>
+		<h:form>
+			<h:inputText value="username"></h:inputText>
+			<h:inputSecret value="password"></h:inputSecret>
+			<h:commandButton value="login" type="submit" />
+		</h:form>
+		<h:button id="cancelLogin" value="Cancel"
+			outcome="home.xhtml"></h:button>
+		<h:button id="createNew" value="Create New User"
+			outcome="login.xhtml"></h:button>
+	</ui:composition>
+</h:body>
+</html>
