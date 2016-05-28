@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
 	xmlns:f="http://java.sun.com/jsf/core">
 
 
@@ -13,10 +14,36 @@
 	<ui:insert name="login">
 		<ui:include src="loginButton.xhtml" />
 	</ui:insert>
-	
+
 	<h1>Event Portal Home</h1>
-	
+	<c:if test="#{loginController.checkStatus() == 1}">
+		<h:button id="goToCreateEventPage" value="Create New Event"
+			outcome="event.xhtml"></h:button>
+	</c:if>
 	<h2>Future Events</h2>
-	<h:outputText id="eventStatus" value="No events yes, be the first to create one"/>
+	<c:if test="#{loginController.checkStatus() == 1}">
+		<h:selectBooleanCheckbox value="ownContry" id="yourCountry"></h:selectBooleanCheckbox>
+		<h:outputText value="xxx"></h:outputText><br/>
+	</c:if>
+	<c:if test="#{eventController.isEventsEmpty() == 0}">
+		<h:outputText id="eventStatus"
+			value="No events yes, be the first to create one" />
+	</c:if>
+	<c:if test="#{eventController.isEventsEmpty() == 1}">
+		<h:dataTable value="#{eventController.events}" var="event">
+			<h:column>
+				<f:facet name="header">Title</f:facet>    				
+      #{event.title}
+   </h:column>
+			<h:column>
+				<f:facet name="header">Location</f:facet>
+      #{event.location}
+   </h:column>
+			<h:column>
+				<f:facet name="header">Country</f:facet>
+      #{event.country}
+   </h:column>
+		</h:dataTable>
+	</c:if>
 </h:body>
 </html>

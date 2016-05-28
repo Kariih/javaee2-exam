@@ -11,14 +11,14 @@
 	</ui:insert>
 	<h1>Login</h1>
 		<h:form>
-			<h:inputText value="username"></h:inputText>
-			<h:inputSecret value="password"></h:inputSecret>
-			<h:commandButton value="login" type="submit" />
+			<h:inputText value="#{loginController.username}"></h:inputText>
+			<h:inputSecret value="#{loginController.password}"></h:inputSecret>
+			<h:commandButton value="login" type="submit" action="#{loginController.confirmPassword()}" />
 		</h:form>
 		<h:button id="cancelLogin" value="Cancel"
 			outcome="home.xhtml"></h:button>
 		<h:button id="createNew" value="Create New User"
-			outcome="login.xhtml"></h:button>
+			outcome="newUser.xhtml"></h:button>
 	</ui:composition>
 </h:body>
 </html>

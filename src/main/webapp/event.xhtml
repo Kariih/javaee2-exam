@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<h3>PG1600 Exam</h3>
+	<ui:insert name="login">
+		<ui:include src="loginButton.xhtml" />
+	</ui:insert>
+
+	<h1>Create Event</h1>
+
+	<h:form>
+		<h:outputLabel value="Title: " />
+		<h:inputText value="#{eventController.event.title}" />
+		<br />
+		<br />
+		<h:outputLabel value="Location: " />
+		<h:inputText value="#{eventController.event.location}" />
+		<br />
+		<br />
+		<h:outputLabel value="Country: " />
+		<h:selectOneMenu value="#{eventController.event.country}">
+			<f:selectItems value="#{userController.countryList}" var="country"
+				itemLabel="#{country}" itemValue="#{country}" />
+		</h:selectOneMenu>
+		<br />
+		<br />
+		<h:outputLabel value="Description: " />
+		<h:inputText value="#{eventController.event.description}" />
+		<br />
+		<br />
+		<br />
+		<h:commandButton value="Create Event" type="submit"
+			action="#{eventController.addEvent()}" />
+	</h:form>
+	<h:button id="goToCreateEventPage" value="Cancel"
+		outcome="home.xhtml"></h:button>
+</h:body>
+</html>

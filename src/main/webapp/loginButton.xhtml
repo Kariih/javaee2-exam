@@ -2,14 +2,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core">
+
 <h:body>
 
-	<ui:composition>
+	<c:if test="#{loginController.checkStatus() == 0}">
 		<p>Not logged inn</p>
-		<h:button id="goToLoginPage" value="Sign in"
-			outcome="login.xhtml">
+		<h:button id="goToLoginPage" value="Sign in" outcome="login.xhtml">
 		</h:button>
-	</ui:composition>
+	</c:if>
+	<c:if test="#{loginController.checkStatus() == 1}">
+		<h:outputText value="#{loginController.getWelcomeText()}"></h:outputText>
+		<br />
+		<h:form>
+			<h:commandButton type="submit" value="Log Out"
+				action="#{loginController.logout()}">
+			</h:commandButton>
+		</h:form>
+	</c:if>
+	<h:form>
+		<h:commandButton type="submit" value="testlog"
+			action="#{loginController.testlog()}">
+		</h:commandButton>
+	</h:form>
 </h:body>
 </html>

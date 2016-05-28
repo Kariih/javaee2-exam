@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+
+<h:head>
+</h:head>
+
+<h:body>
+	<h3>PG1600 Exam</h3>
+	<ui:insert name="login">
+		<ui:include src="loginButton.xhtml" />
+	</ui:insert>
+
+	<h1>Create User</h1>
+
+	<h:form>
+		<h:outputLabel value="Username: " />
+		<h:inputText value="#{userController.user.username}" />
+		<br />
+		<br />
+		<h:outputLabel value="Password: " />
+		<h:inputSecret value="#{userController.user.password}" />
+		<br />
+		<br />
+		<h:outputLabel value="Confirm Password: " />
+		<h:inputSecret value="#{userController.confirmPw}" />
+		<br />
+		<br />
+		<h:outputLabel value="First name: " />
+		<h:inputText value="#{userController.user.firstName}" />
+		<br />
+		<br />
+		<h:outputLabel value="Last name: " />
+		<h:inputText value="#{userController.user.lastName}" />
+		<br />
+		<br />
+		<h:outputLabel value="Country: " />
+		<h:selectOneMenu value="userController.user.country">
+			<f:selectItems value="#{userController.countryList}" var="country"
+				itemLabel="#{country}" itemValue="#{country}" />
+		</h:selectOneMenu>
+		<br />
+		<br />
+		<br />
+		<h:commandButton value="Create User" type="submit"
+			action="#{userController.addUser()}" />
+	</h:form>
+	<c:if test="userController.getSuccessCreateNewUser() == 1">
+		<meta http-equiv="Refresh" content="0; URL=home.xhtml" />
+	</c:if>
+</h:body>
+</html>
