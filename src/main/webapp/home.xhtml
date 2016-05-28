@@ -16,14 +16,14 @@
 	</ui:insert>
 
 	<h1>Event Portal Home</h1>
-	<c:if test="#{loginController.checkStatus() == 1}">
+	<c:if test="#{userController.checkStatus() == 1}">
 		<h:button id="goToCreateEventPage" value="Create New Event"
 			outcome="event.xhtml"></h:button>
 	</c:if>
 	<h2>Future Events</h2>
-	<c:if test="#{loginController.checkStatus() == 1}">
-		<h:selectBooleanCheckbox value="ownContry" id="yourCountry"></h:selectBooleanCheckbox>
-		<h:outputText value="xxx"></h:outputText><br/>
+	<c:if test="#{userController.checkStatus() == 1}">
+		<h:selectBooleanCheckbox value="true" id="yourCountry"></h:selectBooleanCheckbox>
+		<h:outputText value="#{userController.getCountryText()}"></h:outputText><br/>
 	</c:if>
 	<c:if test="#{eventController.isEventsEmpty() == 0}">
 		<h:outputText id="eventStatus"

@@ -7,23 +7,23 @@
 
 <h:body>
 
-	<c:if test="#{loginController.checkStatus() == 0}">
+	<c:if test="#{userController.checkStatus() == 0}">
 		<p>Not logged inn</p>
 		<h:button id="goToLoginPage" value="Sign in" outcome="login.xhtml">
 		</h:button>
 	</c:if>
-	<c:if test="#{loginController.checkStatus() == 1}">
-		<h:outputText value="#{loginController.getWelcomeText()}"></h:outputText>
+	<c:if test="#{userController.checkStatus() == 1}">
+		<h:outputText value="#{userController.getWelcomeText()}"></h:outputText>
 		<br />
 		<h:form>
 			<h:commandButton type="submit" value="Log Out"
-				action="#{loginController.logout()}">
+				action="#{userController.logout()}">
 			</h:commandButton>
 		</h:form>
 	</c:if>
 	<h:form>
 		<h:commandButton type="submit" value="testlog"
-			action="#{loginController.testlog()}">
+			action="#{userController.testlog()}">
 		</h:commandButton>
 	</h:form>
 </h:body>

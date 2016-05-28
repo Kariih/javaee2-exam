@@ -11,9 +11,9 @@
 	</ui:insert>
 	<h1>Login</h1>
 		<h:form>
-			<h:inputText value="#{loginController.username}"></h:inputText>
-			<h:inputSecret value="#{loginController.password}"></h:inputSecret>
-			<h:commandButton value="login" type="submit" action="#{loginController.confirmPassword()}" />
+			<h:inputText value="#{userController.username}"></h:inputText>
+			<h:inputSecret value="#{userController.password}"></h:inputSecret>
+			<h:commandButton value="login" type="submit" action="#{userController.confirmPassword()}" />
 		</h:form>
 		<h:button id="cancelLogin" value="Cancel"
 			outcome="home.xhtml"></h:button>

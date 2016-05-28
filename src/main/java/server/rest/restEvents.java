@@ -17,7 +17,9 @@ import javax.xml.ws.handler.MessageContext;
 
 import javaBeans.CountryEjb;
 import javaBeans.EventRepo;
+import javaBeans.UserRepo;
 import model.Event;
+import model.User;
 
 @Path("/events")
 public class restEvents {
@@ -25,10 +27,14 @@ public class restEvents {
 	@Inject
 	private EventRepo eRepo;
 	@Inject
+	private UserRepo uRepo;
+	@Inject
 	CountryEjb contries;
 
 	List<Event> events;
-	GenericEntity<List<Event>> list;
+	List<User> users;
+	GenericEntity<List<Event>> eList;
+	GenericEntity<List<User>> uList;
 
 	@GET
 	@Path("/all")
@@ -45,9 +51,9 @@ public class restEvents {
 				return Response.serverError().entity("404 - Invalid country name").build();
 			}
 		}
-		list = new GenericEntity<List<Event>>(events) {
+		eList = new GenericEntity<List<Event>>(events) {
 		};
-		return Response.ok(list).build();
+		return Response.ok(eList).build();
 	}
 
 	@GET
@@ -81,9 +87,9 @@ public class restEvents {
 				return Response.serverError().entity("404 - Invalid country name").build();
 			}
 		}
-		list = new GenericEntity<List<Event>>(events) {
+		eList = new GenericEntity<List<Event>>(events) {
 		};
-		return Response.ok(list).build();
+		return Response.ok(eList).build();
 	}
 
 	@GET
@@ -104,6 +110,17 @@ public class restEvents {
 
 	private List<String> loadCountries() {
 		return contries.getCountries();
+	}
+
+	@GET
+	@Path("users")
+	@Produces(MediaType.APPLICATION_XML)
+	@Consumes(MediaType.APPLICATION_XML)
+	public Response getUsers() {
+		users = uRepo.findAll();
+		uList = new GenericEntity<List<User>>(users) {
+		};
+		return Response.ok(uList).build();
 	}
 
 }

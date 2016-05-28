@@ -2,7 +2,10 @@ package model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 @Entity
 public class User {
 
@@ -67,5 +70,4 @@ public class User {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-
 }

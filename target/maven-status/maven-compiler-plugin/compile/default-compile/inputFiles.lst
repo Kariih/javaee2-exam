@@ -2,12 +2,10 @@
 /Users/Beppel/NITH/Java/EventPortal/src/main/java/server/rest/JAXRSConfig.java
 /Users/Beppel/NITH/Java/EventPortal/src/main/java/server/rest/restEvents.java
 /Users/Beppel/NITH/Java/EventPortal/src/main/java/utils/AuthStatus.java
-/Users/Beppel/NITH/Java/EventPortal/src/main/java/server/rest/MapData.java
-/Users/Beppel/NITH/Java/EventPortal/src/main/java/javaBeans/UserRepo.java
-/Users/Beppel/NITH/Java/EventPortal/src/main/java/controller/UserController.java
-/Users/Beppel/NITH/Java/EventPortal/src/main/java/javaBeans/CountryEjb.java
-/Users/Beppel/NITH/Java/EventPortal/src/main/java/controller/LoginController.java
 /Users/Beppel/NITH/Java/EventPortal/src/main/java/model/Event.java
+/Users/Beppel/NITH/Java/EventPortal/src/main/java/javaBeans/UserRepo.java
 /Users/Beppel/NITH/Java/EventPortal/src/main/java/model/User.java
 /Users/Beppel/NITH/Java/EventPortal/src/main/java/utils/CountryRestClient.java
 /Users/Beppel/NITH/Java/EventPortal/src/main/java/controller/EventController.java
+/Users/Beppel/NITH/Java/EventPortal/src/main/java/controller/UserController.java
+/Users/Beppel/NITH/Java/EventPortal/src/main/java/javaBeans/CountryEjb.java

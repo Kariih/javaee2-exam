@@ -27,7 +27,7 @@
 		<br />
 		<h:outputLabel value="Country: " />
 		<h:selectOneMenu value="#{eventController.event.country}">
-			<f:selectItems value="#{userController.countryList}" var="country"
+			<f:selectItems value="#{eventController.countryList}" var="country"
 				itemLabel="#{country}" itemValue="#{country}" />
 		</h:selectOneMenu>
 		<br />
