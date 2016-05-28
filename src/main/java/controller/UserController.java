@@ -40,7 +40,7 @@ public class UserController {
 
 	public void addUser() {
 		if (this.user.getPassword().equals(confirmPw) && !(this.user.getPassword().equals(""))) {
-			if (uRepo.getUser(this.user.getUsername()) == null) {
+			if (uRepo.findOneUser(this.user.getUsername()) == null) {
 					uRepo.add(this.user);
 					AuthStatus.State.status = AuthStatus.AUTHENTICATED;
 					AuthStatus.State.user = this.user;

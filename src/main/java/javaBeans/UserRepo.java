@@ -23,10 +23,7 @@ public class UserRepo {
 		return (List<User>) em.createQuery("select u from " + User.class.getName() + " u").getResultList();
 	}
 	
-	public boolean findOne(String username){
-		return em.find(User.class, username) != null ? false : true;
-	}
-	public User getUser(String username){
+	public User findOneUser(String username){
 		return em.find(User.class, username);
 	}
 }

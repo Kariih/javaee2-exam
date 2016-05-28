@@ -38,7 +38,7 @@ public class LoginController {
 	}
 
 	public void confirmPassword() {
-		User userFromDb = repo.getUser(username);
+		User userFromDb = repo.findOneUser(username);
 		if (userFromDb != null) {
 			if (this.getPassword().equals(userFromDb.getPassword())) {
 				AuthStatus.State.status = AuthStatus.AUTHENTICATED;
