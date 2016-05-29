@@ -3,6 +3,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core">
 
@@ -19,17 +20,17 @@
 	<h1>Event Portal Home</h1>
 	<c:if test="#{userController.checkStatus() == 1}">
 		<h:button id="goToCreateEventPage" value="Create New Event"
-			outcome="event.xhtml"></h:button>
+			outcome="newEvent.xhtml"></h:button>
 	</c:if>
 	<h2>Future Events</h2>
 	<c:if test="#{userController.checkStatus() == 1}">
 		<h:panelGroup id="group">
 			<p:selectBooleanCheckbox value="#{eventController.boxChecked}">
-				<p:ajax update="eventlist"
+				<p:ajax update="group"
 					listener="#{eventController.getEventsBasedOnCheckbox()}" />
 			</p:selectBooleanCheckbox>
 
-			<h:inputText value="#{userController.getCountryText()}"></h:inputText>
+			<h:inputText width="300px" value="#{userController.getCountryText()}"></h:inputText>
 			<br />
 			<c:if test="#{eventController.isEventsEmpty() == 0}">
 				<h:outputText id="eventStatus"
@@ -57,9 +58,8 @@
 					</h:column>
 					<h:column>
 						<f:facet name="header">Going</f:facet>
-						<p:selectBooleanCheckbox value="#{eventController.boxChecked}">
-							<p:ajax update="eventlist"
-								listener="#{eventController.getEventsBasedOnCheckbox()}" />
+						<p:selectBooleanCheckbox value="false">
+							<p:ajax/>
 						</p:selectBooleanCheckbox>
 					</h:column>
 				</h:dataTable>

@@ -2,6 +2,7 @@
 /Users/Beppel/NITH/Java/EventPortal/src/main/java/server/rest/JAXRSConfig.java
 /Users/Beppel/NITH/Java/EventPortal/src/main/java/server/rest/Resources.java
 /Users/Beppel/NITH/Java/EventPortal/src/main/java/utils/AuthStatus.java
+/Users/Beppel/NITH/Java/EventPortal/src/main/java/model/Participants.java
 /Users/Beppel/NITH/Java/EventPortal/src/main/java/model/Event.java
 /Users/Beppel/NITH/Java/EventPortal/src/main/java/javaBeans/UserRepo.java
 /Users/Beppel/NITH/Java/EventPortal/src/main/java/model/User.java

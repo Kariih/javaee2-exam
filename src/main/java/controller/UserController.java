@@ -29,7 +29,6 @@ public class UserController {
 	private String password;
 
 	public List<String> countryList;
-	static final Logger logger = Logger.getLogger(UserController.class);
 
 	@PostConstruct
 	private void init() {
@@ -61,10 +60,6 @@ public class UserController {
 		return AuthStatus.getStatus().equals(Status.AUTHENTICATED) ? 1 : 0;
 	}
 
-	public void testlog() {
-		logger.error("testlogg");
-	}
-
 	public void logout() {
 		AuthStatus.setStatus(Status.GUEST);
 		AuthStatus.setUser(new User());
@@ -87,7 +82,7 @@ public class UserController {
 	}
 	
 	public String getCountryText() {
-		return "Only " + AuthStatus.getUser().getCountry();
+		return "Only " + AuthStatus.getUser().getCountry() + " - But I doesn't work :(";
 	}
 	
 	private void redirectToHome(String path) {

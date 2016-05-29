@@ -27,7 +27,6 @@ public class EventController {
 	public Event event;
 	public List<String> countryList;
 	public List<Event> allEvents = new ArrayList<Event>();
-	public List<Event> events;
 	private boolean boxChecked = true;
 
 	@PostConstruct
@@ -41,11 +40,9 @@ public class EventController {
 	}
 
 	public void getEventsBasedOnCheckbox() {
-		if(boxChecked){
-			setEvents(eRepo.findByCountry(AuthStatus.getUser().getCountry()));
-		}else if(!boxChecked){
-			setEvents(allEvents);
-		}			
+		
+		//magic
+		
 		checkBox();
 		RequestContext.getCurrentInstance().update("contentPanel");
 	}
@@ -86,10 +83,6 @@ public class EventController {
 
 	public List<Event> getEvents() {
 		return allEvents;
-	}
-
-	public void setEvents(List<Event> events) {
-		this.events = events;
 	}
 
 	public int isEventsEmpty() {
