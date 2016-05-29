@@ -9,30 +9,45 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import org.primefaces.context.RequestContext;
+
 import javaBeans.CountryEjb;
 import javaBeans.EventRepo;
 import model.Event;
+import utils.AuthStatus;
 
 @ManagedBean
 public class EventController {
-	
+
 	@Inject
 	private CountryEjb countries;
 	@Inject
 	EventRepo eRepo;
-	
-	public Event event;	
+
+	public Event event;
 	public List<String> countryList;
+	public List<Event> allEvents = new ArrayList<Event>();
 	public List<Event> events;
+	private boolean boxChecked = true;
 
 	@PostConstruct
 	private void init() {
 		countryList = countries.getCountries();
-		events = eRepo.findAll();	
+		allEvents = eRepo.findAll();
 	}
-	
-	public EventController(){
+
+	public EventController() {
 		setEvent(new Event());
+	}
+
+	public void getEventsBasedOnCheckbox() {
+		if(boxChecked){
+			setEvents(eRepo.findByCountry(AuthStatus.getUser().getCountry()));
+		}else if(!boxChecked){
+			setEvents(allEvents);
+		}			
+		checkBox();
+		RequestContext.getCurrentInstance().update("contentPanel");
 	}
 
 	public Event getEvent() {
@@ -42,7 +57,8 @@ public class EventController {
 	public void setEvent(Event event) {
 		this.event = event;
 	}
-	public void addEvent(){
+
+	public void addEvent() {
 		eRepo.add(this.event);
 		try {
 			FacesContext.getCurrentInstance().getExternalContext().redirect("home.xhtml");
@@ -51,7 +67,15 @@ public class EventController {
 			e.printStackTrace();
 		}
 	}
-	
+
+	private void checkBox() {
+		if(boxChecked){
+			boxChecked = false;
+		}else{
+			boxChecked = true;
+		}
+	}
+
 	public List<String> getCountryList() {
 		return countryList;
 	}
@@ -61,13 +85,22 @@ public class EventController {
 	}
 
 	public List<Event> getEvents() {
-		return events;
+		return allEvents;
 	}
 
 	public void setEvents(List<Event> events) {
 		this.events = events;
 	}
+
 	public int isEventsEmpty() {
-		return events.isEmpty() ? 0 : 1;
+		return allEvents.isEmpty() ? 0 : 1;
+	}
+
+	public boolean isBoxChecked() {
+		return boxChecked;
+	}
+
+	public void setBoxChecked(boolean boxChecked) {
+		this.boxChecked = boxChecked;
 	}
 }

@@ -3,6 +3,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core">
 
 
@@ -22,28 +23,48 @@
 	</c:if>
 	<h2>Future Events</h2>
 	<c:if test="#{userController.checkStatus() == 1}">
-		<h:selectBooleanCheckbox value="true" id="yourCountry"></h:selectBooleanCheckbox>
-		<h:outputText value="#{userController.getCountryText()}"></h:outputText><br/>
-	</c:if>
-	<c:if test="#{eventController.isEventsEmpty() == 0}">
-		<h:outputText id="eventStatus"
-			value="No events yes, be the first to create one" />
-	</c:if>
-	<c:if test="#{eventController.isEventsEmpty() == 1}">
-		<h:dataTable value="#{eventController.events}" var="event">
-			<h:column>
-				<f:facet name="header">Title</f:facet>    				
-      #{event.title}
-   </h:column>
-			<h:column>
-				<f:facet name="header">Location</f:facet>
-      #{event.location}
-   </h:column>
-			<h:column>
-				<f:facet name="header">Country</f:facet>
-      #{event.country}
-   </h:column>
-		</h:dataTable>
+		<h:panelGroup id="group">
+			<p:selectBooleanCheckbox value="#{eventController.boxChecked}">
+				<p:ajax update="eventlist"
+					listener="#{eventController.getEventsBasedOnCheckbox()}" />
+			</p:selectBooleanCheckbox>
+
+			<h:inputText value="#{userController.getCountryText()}"></h:inputText>
+			<br />
+			<c:if test="#{eventController.isEventsEmpty() == 0}">
+				<h:outputText id="eventStatus"
+					value="No events yet, be the first to create one" />
+			</c:if>
+
+			<c:if test="#{eventController.isEventsEmpty() == 1}">
+				<h:dataTable id="eventlist" value="#{eventController.events}"
+					var="event">
+					<h:column>
+						<f:facet name="header">Title</f:facet>    				
+				      #{event.title}
+				   </h:column>
+					<h:column>
+						<f:facet name="header">Location</f:facet>
+				      #{event.location}
+				   </h:column>
+					<h:column>
+						<f:facet name="header">Country</f:facet>
+				      #{event.country}
+				   </h:column>
+					<h:column>
+						<f:facet name="header">Participants</f:facet>
+
+					</h:column>
+					<h:column>
+						<f:facet name="header">Going</f:facet>
+						<p:selectBooleanCheckbox value="#{eventController.boxChecked}">
+							<p:ajax update="eventlist"
+								listener="#{eventController.getEventsBasedOnCheckbox()}" />
+						</p:selectBooleanCheckbox>
+					</h:column>
+				</h:dataTable>
+			</c:if>
+		</h:panelGroup>
 	</c:if>
 </h:body>
 </html>

@@ -22,7 +22,7 @@ import model.Event;
 import model.User;
 
 @Path("/events")
-public class restEvents {
+public class Resources {
 
 	@Inject
 	private EventRepo eRepo;
